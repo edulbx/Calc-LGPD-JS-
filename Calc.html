@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Calculador de Multa</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: aliceblue;
+        }
+
+        .container { 
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: azure;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            display: flex;
+            flex-direction: column;
+
+
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 96%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            margin-bottom: 10px;
+        }
+
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: darkolivegreen;
+            color: beige;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: chocolate;
+        }
+
+        #result {
+            margin-top: 10px;
+            padding: 10px;
+            background-color: aliceblue;
+            border-radius: 3px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1> Calculadora de Multas da LGPD</h1>
+        <label for="valoresBase"> Valor-base da multa: </label>
+        <input  type="number"  id="valorBase">
+
+        <label for="aggravants"> Agravantes (por favor, em decimal):</label>
+        <select id="aggravants">
+            <option value="100">Agravante 1 </option>
+            <option value="200">Agravante 2 </option>
+            <option value="300">Agravante 3 </option>
+        </select>
+
+        <label for="mitigants"> Atenuantes (por favor em decimal): </label>
+        <select id="mitigants">
+            <option value="100">Atenuantes 1 </option>
+            <option value="200">Atenuantes 2 </option>
+            <option value="300">Atenuantes 3 </option>
+        </select>
+
+        <button onclick="calcularMulta()">Calcular Multa</button>
+
+        <div id="result"></div>
+    </div>
+
+    <script>
+        function calcularMulta() {
+            const valorBase = parseFloat(document.getElementById('valorBase').value);
+            const agravantes = parseFloat(document.getElementById('aggravants').value);
+            const atenuantes = parseFloat(document.getElementById('mitigants').value);
+            
+            const multa = valorBase * (1 + agravantes - atenuantes);
+
+            document.getElementById('result').textContent = "Valor da Multa: R$ " + multa.toFixed(2);
+        }
+    </script>
+
+</body>
+</html>
